@@ -67,12 +67,13 @@ Dự án tuân thủ nghiêm ngặt mô hình 3 lớp để đảm bảo tính m
 | 3 | **Nguyễn Anh Tuấn** | Backend | Thống kê & Quản lý bài tập |
 | 4 | **Nguyễn Hoàng Hiệp** | Frontend | Thông báo & Công cụ tính toán BMI |
 | 5 | **Hồ Minh Nhật** | Backend | Admin Dashboard & Tổng hợp dữ liệu |
+| 6 | **Đàm Đình Long** | Frontend | Giao diện công cộng & Blog UI |
 
 ---
 
 ## 📞 Liên Hệ
 *   **Repo:** [https://github.com/vminh21/Gymweb.git](https://github.com/vminh21/Gymweb.git)
-*   **Giảng viên hướng dẫn:** Thầy Tùng
+*   **Giảng viên hướng dẫn:** Thầy Trần Đức Thắng
 
 ---
-<p align="center">Made with ❤️ by Group 9</p>
+<p align="center">Made with ❤️ by Group 4</p>
