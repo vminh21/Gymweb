@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "http://localhost/BTLWeb(PC)/backend/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
