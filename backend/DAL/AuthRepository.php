@@ -117,5 +117,50 @@ class AuthRepository {
         $stmt->bindParam(':email', $email);
         return $stmt->execute();
     }
+
+    /**
+     * Tìm role của user theo email (Quét cả 3 bảng)
+     */
+    public function findUserRoleByEmail($email) {
+        // Check members
+        $stmt = $this->db->prepare("SELECT 1 FROM members WHERE email = ?");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) return 'member';
+
+        // Check trainers
+        $stmt = $this->db->prepare("SELECT 1 FROM trainers WHERE email = ?");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) return 'pt';
+
+        // Check admins (admin or staff)
+        $stmt = $this->db->prepare("SELECT position FROM admins WHERE email = ?");
+        $stmt->execute([$email]);
+        if ($admin = $stmt->fetch()) {
+            return $admin['position'] === 'staff' ? 'staff' : 'admin';
+        }
+
+        return null;
+    }
+
+    /**
+     * Cập nhật password theo role
+     */
+    public function updatePasswordByRole($email, $role, $newPassword) {
+        $hashed = password_hash($newPassword, PASSWORD_BCRYPT);
+        $tableMap = [
+            'admin' => 'admins',
+            'staff' => 'admins',
+            'pt' => 'trainers',
+            'member' => 'members'
+        ];
+
+        $table = $tableMap[$role] ?? null;
+        if (!$table) return false;
+
+        $stmt = $this->db->prepare("UPDATE {$table} SET password = :password WHERE email = :email");
+        $stmt->bindParam(':password', $hashed);
+        $stmt->bindParam(':email', $email);
+        return $stmt->execute();
+    }
 }
 ?>

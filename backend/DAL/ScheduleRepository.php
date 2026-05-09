@@ -82,6 +82,19 @@ class ScheduleRepository {
     /* ====== CALENDAR / FULLCALENDAR HELPERS ====== */
 
     /**
+     * Tự động chuyển các lịch 'Chờ xác nhận' đã qua thời gian thành 'Đã hủy'
+     */
+    public function autoCancelExpiredSchedules() {
+        $stmt = $this->db->prepare("
+            UPDATE pt_schedules 
+            SET status = 'Đã hủy' 
+            WHERE status = 'Chờ xác nhận' 
+              AND TIMESTAMP(session_date, time_end) < NOW()
+        ");
+        $stmt->execute();
+    }
+
+    /**
      * Lấy danh sách lịch tập trong khoảng ngày, trả raw data để Service format ISO 8601.
      * Hỗ trợ filter theo trainer_id hoặc member_id (hoặc cả hai).
      */
@@ -91,6 +104,9 @@ class ScheduleRepository {
         ?string $start_date,
         ?string $end_date
     ): array {
+        // Tự động huỷ các lịch đã quá hạn trước khi query
+        $this->autoCancelExpiredSchedules();
+
         $sql = "SELECT 
                     s.schedule_id   AS id,
                     s.session_title AS title,

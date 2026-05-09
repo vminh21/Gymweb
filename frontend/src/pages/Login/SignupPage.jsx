@@ -77,14 +77,12 @@ function SignupPage() {
         </div>
         <form onSubmit={handleSubmit} className="login-form" noValidate>
           <div className="input-group">
-            <label>Họ và Tên *</label>
             <div className="input-wrap">
               <i className="bx bxs-user"></i>
               <input type="text" placeholder="Nhập họ tên..." required {...f('full_name')} />
             </div>
           </div>
           <div className="input-group">
-            <label>Email *</label>
             <div className="input-wrap">
               <i className="bx bxs-envelope"></i>
               <input type="email" placeholder="Nhập email..." required {...f('email')} />
@@ -92,14 +90,12 @@ function SignupPage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             <div className="input-group">
-              <label>Số điện thoại</label>
               <div className="input-wrap">
                 <i className="bx bxs-phone"></i>
                 <input type="tel" placeholder="SĐT..." {...f('phone')} />
               </div>
             </div>
             <div className="input-group">
-              <label>Giới tính</label>
               <div className="input-wrap">
                 <i className="bx bxs-user-detail"></i>
                 <select style={{ width:'100%', background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.1)', borderRadius:10, padding:'12px 12px 12px 40px', color:'#e2e8f0', fontSize:'0.95rem', outline:'none' }} {...f('gender')}>
@@ -110,14 +106,12 @@ function SignupPage() {
             </div>
           </div>
           <div className="input-group">
-            <label>Địa chỉ</label>
             <div className="input-wrap">
               <i className="bx bxs-map"></i>
               <input type="text" placeholder="Nhập địa chỉ..." {...f('address')} />
             </div>
           </div>
           <div className="input-group">
-            <label>Mật khẩu *</label>
             <div className="input-wrap">
               <i className="bx bxs-lock-alt"></i>
               <input type={showPass ? 'text' : 'password'} placeholder="Mật khẩu..." required {...f('password')} />
@@ -125,7 +119,6 @@ function SignupPage() {
             </div>
           </div>
           <div className="input-group">
-            <label>Xác nhận mật khẩu *</label>
             <div className="input-wrap">
               <i className="bx bxs-lock"></i>
               <input type="password" placeholder="Nhập lại mật khẩu..." required {...f('confirm_pass')} />

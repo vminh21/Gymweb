@@ -5,7 +5,7 @@ import axios from 'axios';
  * JWT token được lưu trong localStorage và tự động gắn vào mọi request
  */
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
 });
 

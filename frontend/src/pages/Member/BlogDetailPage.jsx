@@ -29,7 +29,7 @@ function BlogDetailPage() {
           <i className="bx bx-arrow-back"></i> Quay lại Bảng điều khiển
         </button>
 
-        {blog.image_url && <img src={`${BACKEND_URL}/uploads/${blog.image_url}`} style={{width:'100%',maxHeight:450,objectFit:'cover',borderRadius:16,marginBottom:28}} alt="" onError={e=>e.target.style.display='none'} />}
+        {blog.image && <img src={`${BACKEND_URL}/uploads/${blog.image}`} style={{width:'100%',maxHeight:450,objectFit:'cover',borderRadius:16,marginBottom:28}} alt="" onError={e=>e.target.style.display='none'} />}
         
         <h1 style={{color:'#fff',fontSize:'2.2rem',fontWeight:800,marginBottom:16,lineHeight:1.3}}>{blog.title}</h1>
         

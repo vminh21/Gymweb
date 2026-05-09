@@ -9,7 +9,7 @@ function BlogListPage() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { user } = useAuth();
-  const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
+  const BACKEND_URL = 'http://localhost/BTLWeb(PC)/backend';
 
   useEffect(() => {
     blogsApi.list()

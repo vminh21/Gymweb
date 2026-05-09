@@ -104,13 +104,19 @@ class ScheduleService {
     }
 
     public function updateStatus($schedule_id, $status) {
+        $schedule = $this->scheduleRepo->getById($schedule_id);
+        if (!$schedule) return "Lịch tập không tồn tại!";
+
+        // Kiểm tra nghiệp vụ khi đổi sang "Hoàn thành"
         if ($status === 'Hoàn thành') {
-            $schedule = $this->scheduleRepo->getById($schedule_id);
-            if (!$schedule) return "Lịch tập không tồn tại!";
+            if ($schedule['status'] !== 'Đã xác nhận') {
+                return "Học viên chưa xác nhận lịch tập này, không thể đánh dấu Hoàn thành!";
+            }
             
-            $today = date('Y-m-d');
-            if ($schedule['session_date'] > $today) {
-                return "Chưa đến ngày tập, không thể đánh dấu là hoàn thành!";
+            // Lấy thời điểm kết thúc buổi tập
+            $sessionEnd = strtotime($schedule['session_date'] . ' ' . $schedule['time_end']);
+            if (time() < $sessionEnd) {
+                return "Chưa qua thời gian buổi tập, không thể đánh dấu Hoàn thành!";
             }
         }
         

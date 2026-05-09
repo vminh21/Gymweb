@@ -21,4 +21,7 @@ export const authApi = {
 
   /** POST /api/auth/forgot-password - Gửi email khôi phục */
   forgotPassword: (email) => client.post('/auth/forgot-password', { email }),
+
+  /** POST /api/auth/reset-password - Đổi mật khẩu mới với token */
+  resetPassword: (token, newPassword) => client.post('/auth/reset-password', { token, newPassword }),
 };

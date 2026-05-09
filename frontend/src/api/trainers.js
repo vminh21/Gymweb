@@ -17,7 +17,7 @@ export const trainersApi = {
 
   /** PUT /api/trainers/{id} (multipart: có file ảnh) */
   update: (id, formData) =>
-    client.put(`/trainers/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+    client.post(`/trainers/${id}?_method=PUT`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
 
   /** DELETE /api/trainers/{id} */
   delete: (id) => client.delete(`/trainers/${id}`),

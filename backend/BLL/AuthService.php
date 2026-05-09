@@ -160,5 +160,19 @@ class AuthService {
         }
         return ['status' => false, 'error' => "Đã xảy ra lỗi trong quá trình cập nhật. Vui lòng thử lại."];
     }
+
+    /**
+     * Tìm kiếm Role của user bằng email
+     */
+    public function findUserRoleByEmail($email) {
+        return $this->authRepo->findUserRoleByEmail($email);
+    }
+
+    /**
+     * Đổi mật khẩu dựa trên role
+     */
+    public function resetPassword($email, $role, $newPassword) {
+        return $this->authRepo->updatePasswordByRole($email, $role, $newPassword);
+    }
 }
 ?>

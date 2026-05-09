@@ -104,15 +104,15 @@ class TrainerController {
         if ($msg === 'error_ext') {
             // 422 Unprocessable Entity
             jsonResponse(['success' => false, 'error' => 'Chỉ chấp nhận ảnh JPG, JPEG, PNG!'], 422);
-        } elseif ($msg === 'error' || $msg !== 'success') {
+        } elseif ($msg === 'error') {
             // 400 Bad Request
             jsonResponse(['success' => false, 'error' => 'Lỗi lưu thông tin HLV.'], 400);
         }
 
-        // Cập nhật gói tập được gán
-        if ($trainerId > 0) {
+        // Cập nhật gói tập được gán (Chỉ thực hiện nếu có gửi mảng packages lên)
+        if ($trainerId > 0 && isset($body['packages'])) {
             $packages = $packageRepo->getAllPackages();
-            $selected = $body['packages'] ?? [];
+            $selected = (array)($body['packages'] ?? []);
             foreach ($packages as $pkg) {
                 $packageRepo->removeTrainerFromPackage($pkg['package_id'], $trainerId);
                 if (in_array($pkg['package_id'], $selected)) {

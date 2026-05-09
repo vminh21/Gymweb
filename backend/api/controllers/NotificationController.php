@@ -81,7 +81,7 @@ class NotificationController {
 
     private static function store(?int $adminId): void {
         requireSuperAdmin();
-        $body = getRequestBody();
+        $body = !empty($_POST) ? $_POST : getRequestBody();
         $svc  = new NotificationService();
         $file = (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) ? $_FILES['image'] : null;
         
@@ -107,7 +107,7 @@ class NotificationController {
 
     private static function update(string $id, ?int $adminId): void {
         requireSuperAdmin();
-        $body = getRequestBody();
+        $body = !empty($_POST) ? $_POST : getRequestBody();
         $svc  = new NotificationService();
         $file = (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) ? $_FILES['image'] : null;
         

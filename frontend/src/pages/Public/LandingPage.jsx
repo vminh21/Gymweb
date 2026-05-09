@@ -27,7 +27,7 @@ function LandingPage() {
   const [bmiResult, setBmiResult] = useState(null);
   const [bmiError, setBmiError] = useState({ height: '', weight: '' });
 
-  const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
+  const BACKEND_URL = 'http://localhost/BTLWeb(PC)/backend';
 
   const dashboardPath = user?.role === 'admin' || user?.role === 'staff' ? '/admin' : user?.role === 'pt' ? '/pt' : '/member';
 
@@ -151,7 +151,7 @@ function LandingPage() {
       <section className="section__container" style={{paddingTop: 0}}>
         <h2 className="section__header" style={{marginBottom:'3rem'}}>MỤC TIÊU CỦA BẠN</h2>
         <div className="session-grid">
-          <a href="#!" onClick={(e) => { e.preventDefault(); if(!user?.loggedIn) showToast('Vui lòng đăng nhập để tham gia bài tập!'); else navigate(dashboardPath); }} className="session-card">
+          <a href="#!" onClick={(e) => { e.preventDefault(); navigate('/exercise/all'); }} className="session-card">
             <img src={getImg('session-1.jpg')} alt="Body Building" />
             <div className="session-content">
               <h4>BODY BUILDING</h4>
@@ -159,7 +159,7 @@ function LandingPage() {
               <span>Tham gia ngay <i className="bx bx-right-arrow-alt"></i></span>
             </div>
           </a>
-          <a href="#!" onClick={(e) => { e.preventDefault(); if(!user?.loggedIn) showToast('Vui lòng đăng nhập để tham gia bài tập!'); else navigate(dashboardPath); }} className="session-card">
+          <a href="#!" onClick={(e) => { e.preventDefault(); navigate('/exercise/all'); }} className="session-card">
             <img src={getImg('session-2.jpg')} alt="Cardio" />
             <div className="session-content">
               <h4>CARDIO</h4>
@@ -167,7 +167,7 @@ function LandingPage() {
               <span>Tham gia ngay <i className="bx bx-right-arrow-alt"></i></span>
             </div>
           </a>
-          <a href="#!" onClick={(e) => { e.preventDefault(); if(!user?.loggedIn) showToast('Vui lòng đăng nhập để tham gia bài tập!'); else navigate(dashboardPath); }} className="session-card">
+          <a href="#!" onClick={(e) => { e.preventDefault(); navigate('/exercise/all'); }} className="session-card">
             <img src={getImg('session-3.jpg')} alt="Fitness" />
             <div className="session-content">
               <h4>FITNESS</h4>
@@ -175,7 +175,7 @@ function LandingPage() {
               <span>Tham gia ngay <i className="bx bx-right-arrow-alt"></i></span>
             </div>
           </a>
-          <a href="#!" onClick={(e) => { e.preventDefault(); if(!user?.loggedIn) showToast('Vui lòng đăng nhập để tham gia bài tập!'); else navigate(dashboardPath); }} className="session-card">
+          <a href="#!" onClick={(e) => { e.preventDefault(); navigate('/exercise/all'); }} className="session-card">
             <img src={getImg('session-4.jpg')} alt="Crossfit" />
             <div className="session-content">
               <h4>CROSSFIT</h4>
@@ -193,7 +193,7 @@ function LandingPage() {
         <div className="trainer-grid">
           {loadingTop ? <p style={{ textAlign: 'center', gridColumn: 'span 4', color:'#71717a' }}>Đang nạp dữ liệu Hệ thống...</p> : trainers.map((t, i) => (
             <div key={t.trainer_id} className="trainer-card">
-              <div style={{overflow:'hidden'}}><img src={t.image_url ? `${BACKEND_URL}/uploads/${t.image_url}` : getImg(`trainer-${(i%4)+1}.jpg`)} alt={t.full_name} className="trainer-image" onError={e=>e.target.src=getImg(`trainer-${(i%4)+1}.jpg`)} /></div>
+              <div style={{overflow:'hidden'}}><img src={t.image ? `${BACKEND_URL}/uploads/${t.image}` : getImg(`trainer-${(i%4)+1}.jpg`)} alt={t.full_name} className="trainer-image" onError={e=>e.target.src=getImg(`trainer-${(i%4)+1}.jpg`)} /></div>
               <h4>{t.full_name}</h4>
               <p>{t.specialty}</p>
               <div className="trainer-rating">
@@ -309,7 +309,7 @@ function LandingPage() {
           {loadingTop ? <p style={{ textAlign: 'center', gridColumn: 'span 4', color:'#71717a' }}>Đang tải tin tức...</p> : blogs.map((b, i) => (
             <div key={b.blog_id} className="blog-card" style={{cursor: 'pointer'}} onClick={() => navigate(`/blog/${b.blog_id}`)}>
               <div className="blog-img-wrapper">
-                <img src={b.image_url ? `${BACKEND_URL}/uploads/${b.image_url}` : getImg(`blog-${(i%4)+1}.jpg`)} alt={b.title} onError={e=>e.target.src=getImg('blog-1.jpg')} />
+                <img src={b.image ? `${BACKEND_URL}/uploads/${b.image}` : getImg(`blog-${(i%4)+1}.jpg`)} alt={b.title} onError={e=>e.target.src=getImg('blog-1.jpg')} />
               </div>
               <div className="blog-content">
                 <span className="blog-date">{new Date(b.created_at).toLocaleDateString('vi-VN', {day:'2-digit', month:'short', year:'numeric'})}</span>

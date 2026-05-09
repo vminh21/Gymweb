@@ -8,14 +8,14 @@ function Toast({ t }) {
   return <div style={{position:'fixed',top:20,right:20,padding:'12px 20px',borderRadius:10,zIndex:9999,background:t.type==='success'?'#1a2d1a':'#2d1a1a',border:`1px solid ${t.type==='success'?'#22c55e':'#ef4444'}`,color:t.type==='success'?'#86efac':'#fca5a5'}}>{t.msg}</div>;
 }
 
-const STATUS_LABELS = { Good:'Tốt (Hoạt động)', Fair:'Bình thường', Poor:'Kém', 'Under Repair':'Đang bảo trì/sửa' };
-const STATUS_COLORS = { Good:'#22c55e', Fair:'#eab308', Poor:'#ef4444', 'Under Repair':'#f97316' };
+const STATUS_LABELS = { 'Hoạt động':'Hoạt động', 'Bảo trì':'Đang bảo trì', 'Hỏng':'Đã hỏng' };
+const STATUS_COLORS = { 'Hoạt động':'#22c55e', 'Bảo trì':'#f59e0b', 'Hỏng':'#ef4444' };
 
 function EquipmentPage() {
   const [items,   setItems]   = useState([]);
   const [loading, setLoading] = useState(true);
   const [search,  setSearch]  = useState('');
-  const [form,    setForm]    = useState({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Good', purchase_date: new Date().toISOString().split('T')[0] });
+  const [form,    setForm]    = useState({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Hoạt động', purchase_date: new Date().toISOString().split('T')[0] });
   const [toast,   setToast]   = useState({ show:false, msg:'', type:'success' });
   const formRef = useRef(null);
 
@@ -46,7 +46,7 @@ function EquipmentPage() {
     try {
       await (form.id ? equipmentApi.update(form.id, data) : equipmentApi.create(data));
       showToast('Lưu thành công!'); 
-      setForm({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Good', purchase_date: new Date().toISOString().split('T')[0] });
+      setForm({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Hoạt động', purchase_date: new Date().toISOString().split('T')[0] });
       fetchItems(); 
     } catch (err) {
       showToast(err.response?.data?.error || err.message || 'Lưu thất bại!','error');
@@ -59,7 +59,7 @@ function EquipmentPage() {
   };
   
   const handleCancel = () => {
-      setForm({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Good', purchase_date: new Date().toISOString().split('T')[0] });
+      setForm({ id:'', name:'', category:'Máy Cardio', quantity:1, status:'Hoạt động', purchase_date: new Date().toISOString().split('T')[0] });
   }
 
   return (
@@ -92,10 +92,9 @@ function EquipmentPage() {
             <div className="form-group">
                 <label style={{color:'#444'}}>Tình trạng sử dụng</label>
                 <select name="status" value={form.status} onChange={e=>setForm(f=>({...f, status: e.target.value}))} style={{background:'#fff', border:'1px solid #ddd', color:'#333'}}>
-                    <option value="Good">Đang hoạt động tốt</option>
-                    <option value="Fair">Bình thường</option>
-                    <option value="Under Repair">Đang bảo trì/sửa</option>
-                    <option value="Poor">Kém/Hỏng</option>
+                    <option value="Hoạt động">Hoạt động tốt</option>
+                    <option value="Bảo trì">Đang bảo trì/sửa</option>
+                    <option value="Hỏng">Đã hỏng/Kém</option>
                 </select>
             </div>
           </div>
@@ -136,9 +135,9 @@ function EquipmentPage() {
                     <td style={{color:'#666'}}>{eq.category||eq.type||'—'}</td>
                     <td style={{color:'#666'}}>{eq.quantity}</td>
                     <td>
-                        <span className={eq.status==='Good'?"badge badge-active" : (eq.status==='Under Repair'?"badge badge-expired":"badge badge-locked")} 
-                              style={{background: eq.status==='Good'?'#22c55e':(eq.status==='Under Repair'?'#f59e0b':'#ef4444'), color: '#fff', border:'none'}}>
-                            {STATUS_LABELS[eq.status]||eq.status}
+                        <span className="badge" 
+                              style={{background: STATUS_COLORS[eq.status] || '#888', color: '#fff', border:'none'}}>
+                            {STATUS_LABELS[eq.status] || eq.status}
                         </span>
                     </td>
                     <td style={{color:'#666'}}>{eq.purchase_date ? new Date(eq.purchase_date).toLocaleDateString('vi-VN') : '—'}</td>

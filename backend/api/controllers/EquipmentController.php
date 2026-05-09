@@ -31,53 +31,43 @@ class EquipmentController {
         jsonResponse(['success' => true, 'data' => $svc->getAllEquipments($search)], 200);
     }
     
-    private static function show(string $id): void {
-        $svc = new EquipmentService();
-        $eq  = $svc->getAllEquipments(''); // fallback since no getById in interface directly, or maybe there is? This was not implemented but requested. Let's skip show if it's not defined originally (it wasn't in the switch block).
-        // Actually, let's keep only what was there
-    }
-
     private static function store(): void {
         $body = getRequestBody();
         $svc  = new EquipmentService();
-        
+
         $msg  = $svc->saveEquipment(
             0,
             trim($body['name']          ?? ''),
             trim($body['category']      ?? ''),
             (int)($body['quantity']    ?? 0),
-            trim($body['status']        ?? 'Good'),
+            trim($body['status']        ?? 'Hoạt động'),
             trim($body['purchase_date'] ?? date('Y-m-d'))
         );
         
         if ($msg === 'error' || $msg !== 'success') {
-            // 400 Bad Request
             jsonResponse(['success' => false, 'error' => 'Không thể thêm thiết bị mới.'], 400);
         }
         
-        // 201 Created
         jsonResponse(['success' => true, 'message' => 'Thêm thiết bị thành công.'], 201);
     }
 
     private static function update(string $id): void {
         $body = getRequestBody();
         $svc  = new EquipmentService();
+
         $msg  = $svc->saveEquipment(
             (int)$id,
             trim($body['name']          ?? ''),
             trim($body['category']      ?? ''),
             (int)($body['quantity']    ?? 0),
-            trim($body['status']        ?? 'Good'),
+            trim($body['status']        ?? 'Hoạt động'),
             trim($body['purchase_date'] ?? date('Y-m-d'))
         );
         
-        // Since we don't have a check if ID exists right here, and saveEquipment might return error if ID not found.
         if ($msg === 'error' || $msg !== 'success') {
-            // 400 Bad Request
-            jsonResponse(['success' => false, 'error' => 'Cập nhật thất bại. (ID không tồn tại hoặc dữ liệu sai)'], 400);
+            jsonResponse(['success' => false, 'error' => 'Cập nhật thất bại.'], 400);
         }
         
-        // 200 OK
         jsonResponse(['success' => true, 'message' => 'Cập nhật thành công'], 200);
     }
 

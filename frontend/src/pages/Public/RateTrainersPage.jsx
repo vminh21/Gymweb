@@ -92,7 +92,7 @@ function RateTrainersPage() {
           {loading ? <p style={{color:'#888', textAlign:'center', gridColumn:'1/-1'}}>Đang tải danh sách PT...</p> : trainers.map(t => (
             <div key={t.trainer_id} style={{background:'#141414', border:'1px solid rgba(255,255,255,0.06)', borderRadius:16, padding:24, display:'flex', flexDirection:'column', alignItems:'center', transition:'transform 0.3s'}}
                  onMouseEnter={e=>e.currentTarget.style.transform='translateY(-5px)'} onMouseLeave={e=>e.currentTarget.style.transform='translateY(0)'}>
-              {t.image_url ? <img src={`${BACKEND_URL}/uploads/${t.image_url}`} style={{width:100,height:100,borderRadius:'50%',objectFit:'cover',marginBottom:16, border:'3px solid rgba(249,115,22,0.2)'}} alt="" onError={e=>e.target.style.display='none'} />
+              {t.image ? <img src={`${BACKEND_URL}/uploads/${t.image}`} style={{width:100,height:100,borderRadius:'50%',objectFit:'cover',marginBottom:16, border:'3px solid rgba(249,115,22,0.2)'}} alt="" onError={e=>e.target.style.display='none'} />
               : <div style={{width:100,height:100,borderRadius:'50%',background:'rgba(249,115,22,0.1)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:16}}><i className="bx bxs-user" style={{fontSize:'3.5rem',color:'#f97316'}}></i></div>}
               
               <strong style={{color:'#fff',fontSize:'1.15rem',marginBottom:4}}>{t.full_name}</strong>
@@ -121,7 +121,7 @@ function RateTrainersPage() {
             {/* Modal Header */}
             <div style={{padding:'24px 32px', borderBottom:'1px solid rgba(255,255,255,0.05)', display:'flex', justifyContent:'space-between', alignItems:'center', background:'#141414'}}>
                <div style={{display:'flex', alignItems:'center', gap:16}}>
-                 {modalTrainer.image_url ? <img src={`${BACKEND_URL}/uploads/${modalTrainer.image_url}`} style={{width:60,height:60,borderRadius:'50%',objectFit:'cover'}} alt="" />
+                 {modalTrainer.image ? <img src={`${BACKEND_URL}/uploads/${modalTrainer.image}`} style={{width:60,height:60,borderRadius:'50%',objectFit:'cover'}} alt="" />
                   : <div style={{width:60,height:60,borderRadius:'50%',background:'rgba(249,115,22,0.1)'}}></div>}
                  <div>
                    <h2 style={{color:'#fff', fontSize:'1.2rem'}}>{modalTrainer.full_name}</h2>

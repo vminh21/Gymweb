@@ -14,7 +14,7 @@ export const blogsApi = {
 
   /** PUT /api/blogs/{id} (multipart) */
   update: (id, formData) =>
-    client.put(`/blogs/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+    client.post(`/blogs/${id}?_method=PUT`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
 
   /** DELETE /api/blogs/{id} */
   delete: (id) => client.delete(`/blogs/${id}`),

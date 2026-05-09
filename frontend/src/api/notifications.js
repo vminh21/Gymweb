@@ -17,7 +17,9 @@ export const notificationsApi = {
 
   /** PUT /api/notifications/{id} */
   update: (id, formData) =>
-    client.put(`/notifications/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+    client.post(`/notifications/${id}?_method=PUT`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }),
 
   /** DELETE /api/notifications/{id} */
   delete: (id) => client.delete(`/notifications/${id}`),

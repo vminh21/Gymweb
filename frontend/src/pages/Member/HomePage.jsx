@@ -10,7 +10,7 @@ function HomePage() {
   const [blogs, setBlogs] = useState([]);
   const [trainers, setTrainers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
+  const BACKEND_URL = 'http://localhost/BTLWeb(PC)/backend';
 
   useEffect(() => {
     Promise.all([
@@ -75,7 +75,7 @@ function HomePage() {
               const fallbackImg = new URL(`../../assets/trainer-${(index%4)+1}.jpg`, import.meta.url).href;
               return (
                 <div key={t.trainer_id} style={{ background: '#f8f9fa', border: '1px solid #e2e6ea', borderRadius: 12, padding: 16, display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer' }}>
-                  <img src={t.image_url ? `${BACKEND_URL}/uploads/${t.image_url}` : fallbackImg} alt={t.full_name} style={{ width: 50, height: 50, borderRadius: '50%', objectFit: 'cover' }} onError={e=>e.target.src=fallbackImg} />
+                  <img src={t.image ? `${BACKEND_URL}/uploads/${t.image}` : fallbackImg} alt={t.full_name} style={{ width: 50, height: 50, borderRadius: '50%', objectFit: 'cover' }} onError={e=>e.target.src=fallbackImg} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <strong style={{ color: 'var(--text-dark)', display: 'block', fontSize: '0.95rem', marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.full_name}</strong>
                     <span style={{ color: '#6b7280', fontSize: '0.8rem', display: 'block', marginBottom: 4 }}>{t.specialty||'Gym'}</span>

@@ -10,7 +10,7 @@ function BlogDetailPage() {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-  const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
+  const BACKEND_URL = 'http://localhost/BTLWeb(PC)/backend';
 
   useEffect(() => {
     blogsApi.get(id).then(r => {

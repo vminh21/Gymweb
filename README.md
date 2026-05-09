@@ -60,14 +60,14 @@ Dự án tuân thủ nghiêm ngặt mô hình 3 lớp để đảm bảo tính m
 
 ## 👥 Phân Công Thành Viên (Nhóm 9)
 
-| STT | Thành viên | Vai trò | Module phụ trách |
-| :-- | :--- | :--- | :--- |
-| 1 | **Nguyễn Văn Minh** (Leader) | Fullstack | Auth, Admin Module, JWT Architecture |
-| 2 | **Nhữ Tùng Lâm** | Frontend | Member Profile, Subscription & Payments |
-| 3 | **Nguyễn Anh Tuấn** | Backend | Thống kê & Quản lý bài tập |
-| 4 | **Nguyễn Hoàng Hiệp** | Frontend | Thông báo & Công cụ tính toán BMI |
-| 5 | **Hồ Minh Nhật** | Backend | Admin Dashboard & Tổng hợp dữ liệu |
-| 6 | **Đàm Đình Long** | Frontend | Giao diện công cộng & Blog UI |
+| STT | Họ và tên | Chức vụ | Điểm tự đánh giá | Nhiệm vụ chi tiết |
+| :-- | :--- | :--- | :---: | :--- |
+| 1 | **Nguyễn Văn Minh** | Nhóm trưởng | 9 | Phân tích nghiệp vụ, thiết kế kiến trúc hệ thống, thuyết trình, PowerPoint, Module (Đăng nhập, đăng ký, quên mật khẩu, phân quyền, quản lý lịch tập, giáo trình, dashboard PT) |
+| 2 | **Nhữ Tùng Lâm** | Thành viên | 9 | Thiết kế hệ thống, Báo cáo, Phân tích nghiệp vụ, Module (Làm giao diện và chức năng trang người dùng, lịch sử giao dịch, thanh toán) |
+| 3 | **Hồ Minh Nhật** | Thành viên | 9 | Thiết kế hệ thống, Báo cáo, Vẽ sơ đồ UML, Module (Làm giao diện và chức năng trang tổng quan (dashboard), quản lý users) |
+| 4 | **Nguyễn Hoàng Hiệp** | Thành viên | 9 | Thiết kế hệ thống, Thiết kế kiến trúc hệ thống, PowerPoint, Vẽ sơ đồ UML, Module (Làm giao diện và chức năng trang quản lý thông báo, quản lý tin tức, tính BMI) |
+| 5 | **Nguyễn Anh Tuấn** | Thành viên | 9 | Thiết kế hệ thống, Báo cáo, Module (Làm giao diện và chức năng trang bodybuilding, cardio, fitness, crossfit, thống kê doanh thu, quản lý nhân sự) |
+| 6 | **Đàm Đình Long** | Thành viên | 9 | Thiết kế hệ thống, Báo cáo, Phân tích nghiệp vụ, Module (Quản lý PT, quản lý máy tập) |
 
 ---
 

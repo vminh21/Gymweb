@@ -7,6 +7,7 @@ import useAuth from './hooks/useAuth';
 import LoginPage        from './pages/Login/LoginPage';
 import SignupPage       from './pages/Login/SignupPage';
 import ForgotPassword   from './pages/Login/ForgotPasswordPage';
+import ResetPasswordPage from './pages/Login/ResetPasswordPage';
 
 // ── Pages: Admin ────────────────────────────────────────────────────────────
 import AdminDashboard   from './pages/Admin/DashboardPage';
@@ -53,6 +54,7 @@ function AppRoutes() {
       <Route path="/login"           element={<LoginPage />} />
       <Route path="/signup"          element={<SignupPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password"  element={<ResetPasswordPage />} />
       <Route path="/exercise/:type"  element={<ExercisePage />} />
       <Route path="/rate-trainers"   element={<RateTrainers />} />
 
